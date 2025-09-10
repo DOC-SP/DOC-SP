@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparativa Salarial</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #212121;
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 960px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      margin: 1rem auto;
+      overflow: hidden;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: #37474F;
+      text-align: center;
+      margin: 0 0 2rem 0;
+    }
+
+    .comparison-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .box {
+      flex: 1;
+      min-width: 280px;
+      background: #f4f4f4;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: float 5s ease-in-out infinite;
+      box-sizing: border-box;
+    }
+
+    .loss {
+      background: #FFEBEE;
+      border-left: 8px solid #C62828;
+    }
+
+    .recovery {
+      background: #E8F5E9;
+      border-left: 8px solid #2E7D32;
+    }
+
+    .counter {
+      font-weight: bold;
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.2rem;
+    }
+
+    .main-amount {
+      font-size: 2.5rem;
+    }
+
+    .decimals-small {
+      font-size: 1rem;
+      vertical-align: top;
+      opacity: 0.8;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+
+    .loss .main-amount, .loss .decimals-small {
+      color: #C62828;
+    }
+
+    .recovery .main-amount, .recovery .decimals-small {
+      color: #2E7D32;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.3; }
+    }
+
+    .ratio-container {
+      margin-top: 2rem;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
+      background: #FFEBEE;
+      color: #C62828;
+      font-weight: bold;
+      border-radius: 10px;
+      animation: pulse 2.5s infinite;
+      border-left: 8px solid #C62828;
+    }
+
+    details.reference-data {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      background: #E3F2FD;
+      color: #0D47A1;
+      border: 1px solid #2196F3;
+      border-radius: 10px;
+      padding: 1rem;
+      border-left: 8px solid #0D47A1;
+    }
+
+    details.reference-data summary {
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.85; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .inline-counter {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .main-amount {
+        font-size: 2rem;
+      }
+
+      .ratio-container {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+   <p class="lead">
+      <strong>PÉRDIDA ACUMULADA DESDE ENERO DE 2025. MAESTRO/A DE NUEVO INGRESO</strong>
+    </p>
+
+
+    <section class="comparison-container" aria-label="Comparativa entre pérdida y recuperación salarial">
+      <div class="box loss" aria-label="Caja de pérdida acumulada">
+        <h2 style="color: #B71C1C;">
+          Pérdida acumulada desde el 1 de enero de 2025 <sup><a title="Ver datos salariales de referencia">(*)</a></sup>
+        </h2>
+        <div class="counter loss-counter">
+          <span class="main-amount">0,00</span><span class="decimals-small">00</span><span class="main-amount"> €</span>
+        </div>
+        <p>Pérdida mensual: <strong>576,29€</strong></p>
+	<p>Al finalizar el año será: <strong>6.915,47€</strong></p>
+        <p><strong>...y sigue aumentando.</strong></p>
+      </div>
+
+      <div class="box recovery" aria-label="Caja de propuesta de recuperación">
+        <h2 style="color: #2E7D32;">Recuperación ofrecida por la Administración.</h2>
+        <div class="counter recovery-counter">
+          <span class="main-amount">0,00</span><span class="decimals-small">00</span><span class="main-amount"> €</span>
+        </div>
+        <p>"Recuperación" acumulada desde el 1 de enero de 2025.</p>
+        <p>Compensación propuesta: <strong>35 €/mes</strong> (pagas extras prorrateadas).</p>
+      </div>
+    </section>
+
+    <div class="ratio-container" id="ratioText">
+      ¡La recuperación aún no ha comenzado!
+    </div>
+
+    <details class="reference-data">
+      <summary>📚 Datos de referencia</summary>
+      <ul>
+        <li><strong>Variación IPC:</strong> 36,9 % (Ene 2009 - Ene 2025)</li>
+        <li><strong>Fuente IPC:</strong> <a href="https://drive.google.com/file/d/1GnO2bMGjlZ0Ls2cVG4TCATSo0LkI_jql/view?usp=sharing" target="_blank">INE</a></li>
+        <li><strong>Informe económico:</strong> 
+          <a href="https://drive.google.com/file/d/16fbKoBc7ci-0whuwGgNPnoPk4pXo43tG/view?usp=drive_link" target="_blank">Informe de la pérdida salarial maestro/a de nuevo ingreso 2009-2024</a>
+        </li>
+      <!--  <li><strong>Informe global:</strong> 
+          <a href="https://www.sindicatopide.org/Varios2024-25/Noviembre24/InformePIDEperdidaSalarial1999-2024.pdf" target="_blank">Informe PIDE sobre pérdida salarial 1999–2024</a>
+        </li> -->
+        <li><strong>Fuente retribuciones:</strong> 
+          <a href="https://profex.educarex.es/regimen-retributivo/tablas-retributivas" target="_blank">Profex</a>
+        </li>
+        <li><strong>(*) Datos salariales de referencia:</strong> Maestro o maestra de nuevo ingreso en Extremadura.</li>
+        <li><strong>Nota: </strong>Datos retributivos anualizados (pagas extras prorrateadas).</li>
+        <li><strong><a href="mailto:docenciasinprecariedad@gmail.com">@jm_mates</a></strong></li>
+        
+      </ul>
+    </details>
+    <p class="lead">
+      El profesorado extremeño ha visto mermado su poder adquisitivo durante más de una década.
+    </p>
+    <div style="margin-top: 2rem; text-align: center;">
+      <p><strong>📣 Comparte esta página:</strong></p>
+  <a href="https://wa.me/?text=Docente%20extremeño/a:%20Consulta%20en%20tiempo%20real%20cuánto%20has%20dejado%20de%20percibir%20este%20año.%20El%20cálculo%20se%20basa%20en%20el%20salario%20de%20un%20docente%20de%20nuevo%20ingreso%2C%20por%20lo%20que%20la%20pérdida%20real%20para%20muchas%20y%20muchos%20profesionales%20es%20aún%20mayor.%20¡Exijamos%20lo%20que%20nos%20corresponde!%20https%3A%2F%2Fsites.google.com%2Fview%2Fprecariedad%2Finicio%20📢Comparte" target="_blank" style="margin: 0 10px;">WhatsApp</a>
+
+  <a href="https://twitter.com/intent/tweet?text=Docente%20extremeño/a:%20Consulta%20en%20tiempo%20real%20cuánto%20has%20dejado%20de%20percibir%20este%20año.%20El%20cálculo%20se%20basa%20en%20el%20salario%20de%20un%20docente%20de%20nuevo%20ingreso%2C%20por%20lo%20que%20la%20pérdida%20real%20para%20muchas%20y%20muchos%20profesionales%20es%20aún%20mayor.%20¡Exijamos%20lo%20que%20nos%20corresponde!%20https%3A%2F%2Fsites.google.com%2Fview%2Fprecariedad%2Finicio" target="_blank" style="margin: 0 10px;">X (Twitter)</a>
+
+  <a href="mailto:?subject=Comparativa%20salarial%20en%20tiempo%20real&body=Docente%20extremeño/a:%20Consulta%20en%20tiempo%20real%20cuánto%20has%20dejado%20de%20percibir%20este%20año.%20El%20cálculo%20se%20basa%20en%20el%20salario%20de%20un%20docente%20de%20nuevo%20ingreso%2C%20por%20lo%20que%20la%20pérdida%20real%20para%20muchas%20y%20muchos%20profesionales%20es%20aún%20mayor.%20¡Exijamos%20lo%20que%20nos%20corresponde!%20https%3A%2F%2Fsites.google.com%2Fview%2Fprecariedad%2Finicio" style="margin: 0 10px;">Correo</a>
+    </div>
+
+  </div>
+
+  <script>
+    const startDate = new Date('2025-01-01T00:00:00');
+    const monthlyLoss = 576.29;
+    const monthlyRecovery = 35;
+    const secondsPerMonth = (365.25 / 12) * 24 * 60 * 60;
+
+    function formatAmountParts(amount) {
+      const fixed = amount.toFixed(4);
+      const [intPart, decimals] = fixed.split('.');
+      const formattedMain = parseInt(intPart).toLocaleString('es-ES') + ',' + decimals.slice(0, 2);
+      const smallPart = decimals.slice(2, 4);
+      return [formattedMain, smallPart];
+    }
+
+    function updateCounter() {
+      const now = new Date();
+      const diffSeconds = (now - startDate) / 1000;
+
+      const loss = (diffSeconds / secondsPerMonth) * monthlyLoss;
+      const recovery = (diffSeconds / secondsPerMonth) * monthlyRecovery;
+
+      const [lossMain, lossSmall] = formatAmountParts(loss);
+      const [recoveryMain, recoverySmall] = formatAmountParts(recovery);
+
+      document.querySelectorAll('.loss-counter .main-amount')[0].textContent = lossMain;
+      document.querySelectorAll('.loss-counter .decimals-small')[0].textContent = lossSmall;
+
+      document.querySelectorAll('.recovery-counter .main-amount')[0].textContent = recoveryMain;
+      document.querySelectorAll('.recovery-counter .decimals-small')[0].textContent = recoverySmall;
+
+      const ratio = document.getElementById('ratioText');
+      if (loss > 0) {
+        ratio.textContent = "📢 Salario digno ya. ¡Lo perdido no se negocia, se devuelve!";
+      }
+    }
+
+    setInterval(updateCounter, 2000);
+    updateCounter();
+  </script>
+</body>
+</html>
